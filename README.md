@@ -1,4 +1,4 @@
-# DonateCaseAPI
+# DonateCaseAPI ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/Jodexx/DonateCaseAPI?label=version)
 [JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0) <br>
 [MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0)
 # Install
