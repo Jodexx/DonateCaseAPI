@@ -50,9 +50,9 @@ publishing {
         }
     }
 }
-javadoc.options.links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
 
 javadoc {
+    options.links('https://docs.oracle.com/en/java/javase/11/docs/api/')
     source = sourceSets.main.allJava
     destinationDir = file("javadocs")
 }
