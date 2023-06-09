@@ -1,13 +1,14 @@
 plugins {
     id 'java'
 }
+apply plugin: 'maven-publish'
+
 
 group = 'com.jodexindustries.donatecase.api'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven { url "https://jitpack.io" }
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         content {
@@ -16,15 +17,42 @@ repositories {
         }
     }
 }
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
-    implementation 'com.github.jitpack:gradle-simple:1.0'
-
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 test {
     useJUnitPlatform()
+}
+publishing {
+    repositories {
+        maven {
+            name = "JodexIndustriesRepo"
+            url = "https://repo.jodexindustries.space/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = "com.jodexindustries.donatecase.api"
+            artifactId = "DonateCaseAPI"
+            version = "1.0"
+            from components.java
+        }
+    }
+}
+javadoc.options.links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+
+javadoc {
+    source = sourceSets.main.allJava
+    destinationDir = file("javadocs")
 }
