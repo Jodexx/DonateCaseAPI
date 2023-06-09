@@ -1,4 +1,4 @@
-package com.jodexindustries.api;
+package com.jodexindustries.donatecase.api;
 
 public class Case {
     public static void setKeys(String casename, String player, int keys) {}
