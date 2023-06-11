@@ -7,7 +7,7 @@ public class Case {
      * @param player player name
      * @param keys number of keys
      */
-    public static void setKeys(String casename, String player, int keys) {}
+    public void setKeys(String casename, String player, int keys) {}
 
     /**
      * Add case keys to a specific player
@@ -15,7 +15,7 @@ public class Case {
      * @param player player name
      * @param keys number of keys
      */
-    public static void addKeys(String casename, String player, int keys) {}
+    public  void addKeys(String casename, String player, int keys) {}
 
     /**
      * Delete case keys for a specific player
@@ -23,7 +23,7 @@ public class Case {
      * @param player player name
      * @param keys number of keys
      */
-    public static void removeKeys(String casename, String player, int keys) {}
+    public void removeKeys(String casename, String player, int keys) {}
 
     /**
      * Get the keys to a certain player's case
@@ -31,7 +31,7 @@ public class Case {
      * @param player player name
      * @return number of keys
      */
-    public static int getKeys(String name, String player) {
+    public int getKeys(String name, String player) {
         return getKeys(name, player);
     }
 
@@ -40,7 +40,7 @@ public class Case {
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
      * @return true/false
      */
-    public static boolean hasCaseByLocation(String loc) {
+    public boolean hasCaseByLocation(String loc) {
         return hasCaseByLocation(loc);
     }
 
@@ -49,7 +49,7 @@ public class Case {
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
      * @return case type
      */
-    public static String getCaseTypeByLocation(String loc) {
+    public String getCaseTypeByLocation(String loc) {
         return getCaseTypeByLocation(loc);
     }
 
@@ -58,7 +58,7 @@ public class Case {
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
      * @return case name
      */
-    public static String getCaseNameByLocation(String loc) {
+    public String getCaseNameByLocation(String loc) {
         return getCaseNameByLocation(loc);
     }
 
@@ -67,7 +67,7 @@ public class Case {
      * @param name case name
      * @return true/false
      */
-    public static boolean hasCaseByName(String name) {
+    public boolean hasCaseByName(String name) {
         return hasCaseByName(name);
     }
     /**
@@ -75,7 +75,7 @@ public class Case {
      * @param name case name
      * @return true/false
      */
-    public static boolean hasCaseDataByName(String name) {
+    public boolean hasCaseDataByName(String name) {
         return hasCaseDataByName(name);
     }
 
@@ -84,7 +84,7 @@ public class Case {
      * @param title case title
      * @return true/false
      */
-    public static boolean hasCaseByTitle(String title) {
+    public boolean hasCaseByTitle(String title) {
         return hasCaseByTitle(title);
     }
 
@@ -93,7 +93,7 @@ public class Case {
      * @param title case title
      * @return case name
      */
-    public static String getCaseByTitle(String title) {
+    public String getCaseByTitle(String title) {
         return getCaseByTitle(title);
     }
 }
