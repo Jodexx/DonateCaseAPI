@@ -5,25 +5,25 @@
 Maven
 ```xml
 <repository>
-  <id>Jodexindustries</id>
-  <name>JodexIndustries Repo</name>
-  <url>https://repo.jodexindustries.space/<repository></url>
+    <id>JodexIndustries</id>
+    <name>JodexIndustries Repo</name>
+    <url>https://repo.jodexindustries.space/releases</url>
 </repository>
 
 <dependency>
   <groupId>com.jodexindustries.donatecase.api</groupId>
   <artifactId>DonateCaseAPI</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 Gradle
 ```gradle
 maven {
-    name "JodexIndustrie"
+    name "JodexIndustries"
     url "https://repo.jodexindustries.space/releases"
 }
 
-compileOnly("com.jodexindustries.donatecase.api:DonateCaseAPI:1.0")
+compileOnly("com.jodexindustries.donatecase.api:DonateCaseAPI:1.0.1")
 ```
 # Example
 ```java
@@ -34,6 +34,7 @@ public final class TestDonateCaseAPI extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Case Case = new Case();
         getLogger().info(String.valueOf(Case.getKeys("case", "_Jodex__"))); // get player keys
     }
 
