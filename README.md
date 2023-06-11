@@ -1,6 +1,6 @@
 # DonateCaseAPI ![GitHub tag (latest by date)](https://repo.jodexindustries.space/api/badge/latest/releases/com/jodexindustries/donatecase/api/DonateCaseAPI?color=40c14a&name=DonateCaseAPI&prefix=v)
-[JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0.1) <br>
-[MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0.1)
+[JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0.2) <br>
+[MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/api/DonateCaseAPI/1.0.2)
 # Install
 Maven
 ```xml
@@ -13,7 +13,7 @@ Maven
 <dependency>
   <groupId>com.jodexindustries.donatecase.api</groupId>
   <artifactId>DonateCaseAPI</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 Gradle
@@ -23,7 +23,7 @@ maven {
     url "https://repo.jodexindustries.space/releases"
 }
 
-compileOnly("com.jodexindustries.donatecase.api:DonateCaseAPI:1.0.1")
+compileOnly("com.jodexindustries.donatecase.api:DonateCaseAPI:1.0.2")
 ```
 # Example
 Code
