@@ -26,6 +26,7 @@ maven {
 compileOnly("com.jodexindustries.donatecase.api:DonateCaseAPI:1.0.1")
 ```
 # Example
+Code
 ```java
 import com.jodexindustries.donatecase.api.Case;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,4 +40,12 @@ public final class TestDonateCaseAPI extends JavaPlugin {
     }
 
 }
+```
+
+plugin.yml
+```yaml
+depend:
+  - DonateCase
+loadbefore:
+  - DonateCase
 ```
