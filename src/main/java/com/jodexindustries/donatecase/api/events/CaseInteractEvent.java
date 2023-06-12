@@ -21,7 +21,9 @@ public class CaseInteractEvent extends PlayerEvent implements Cancellable {
         return block;
     }
 
-    @NotNull
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
     @Override
     public HandlerList getHandlers() {
         return handlers;
