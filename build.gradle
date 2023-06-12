@@ -4,7 +4,7 @@ plugins {
 apply plugin: 'maven-publish'
 
 
-group = 'com.jodexindustries.donatecase.api'
+group = 'com.jodexindustries.donatecase'
 version = '1.0.2'
 
 repositories {
@@ -44,7 +44,7 @@ publishing {
     }
     publications {
         maven(MavenPublication) {
-            groupId = "com.jodexindustries.donatecase.api"
+            groupId = "com.jodexindustries.donatecase"
             artifactId = "DonateCaseAPI"
             version = project.version
             from components.java
