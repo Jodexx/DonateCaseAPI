@@ -29,16 +29,26 @@ compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.3")
 Code
 ```java
 import com.jodexindustries.donatecase.api.Case;
+import com.jodexindustries.donatecase.api.events.CaseInteractEvent;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class TestDonateCaseAPI extends JavaPlugin {
+public final class TestDonateCaseAPI extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        getLogger().info(String.valueOf(Case.getKeys("case", "_Jodex__"))); // get player keys
+        getLogger().info(String.valueOf(Case.getKeys("case", "_Jodex__")));
+        getServer().getPluginManager().registerEvents(this, this);
     }
-
+    @EventHandler
+    public void onCaseInteract(CaseInteractEvent e) {
+        Player p = e.getPlayer();
+        p.sendMessage(e.getClickedBlock().getLocation().toString());
+    }
 }
+
 ```
 
 plugin.yml
