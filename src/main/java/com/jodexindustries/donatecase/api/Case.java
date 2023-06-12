@@ -1,35 +1,38 @@
 package com.jodexindustries.donatecase.api;
 
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
 public class Case {
     /**
      * Set case keys to a specific player
-     * @param casename case name
-     * @param player player name
-     * @param keys number of keys
+     * @param casename Case name
+     * @param player Player name
+     * @param keys Number of keys
      */
     public static void setKeys(String casename, String player, int keys) {}
 
     /**
      * Add case keys to a specific player
-     * @param casename case name
-     * @param player player name
-     * @param keys number of keys
+     * @param casename Case name
+     * @param player Player name
+     * @param keys Number of keys
      */
     public static void addKeys(String casename, String player, int keys) {}
 
     /**
      * Delete case keys for a specific player
-     * @param casename case name
-     * @param player player name
-     * @param keys number of keys
+     * @param casename Case name
+     * @param player Player name
+     * @param keys Number of keys
      */
     public static void removeKeys(String casename, String player, int keys) {}
 
     /**
      * Get the keys to a certain player's case
-     * @param name case name
-     * @param player player name
-     * @return number of keys
+     * @param name Case name
+     * @param player Player name
+     * @return Number of keys
      */
     public static int getKeys(String name, String player) {
         return getKeys(name, player);
@@ -47,7 +50,7 @@ public class Case {
     /**
      * Get case type by location
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
-     * @return case type
+     * @return Case type
      */
     public static String getCaseTypeByLocation(String loc) {
         return getCaseTypeByLocation(loc);
@@ -56,7 +59,7 @@ public class Case {
     /**
      * Get case name by location
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
-     * @return case name
+     * @return Case name
      */
     public static String getCaseNameByLocation(String loc) {
         return getCaseNameByLocation(loc);
@@ -64,7 +67,7 @@ public class Case {
 
     /**
      * Is there a case with a name?
-     * @param name case name
+     * @param name Case name
      * @return true/false
      */
     public static boolean hasCaseByName(String name) {
@@ -72,7 +75,7 @@ public class Case {
     }
     /**
      * Are there cases that have been created?
-     * @param name case name
+     * @param name Case name
      * @return true/false
      */
     public static boolean hasCaseDataByName(String name) {
@@ -81,7 +84,7 @@ public class Case {
 
     /**
      * Are there cases with a specific title?
-     * @param title case title
+     * @param title Case title
      * @return true/false
      */
     public static boolean hasCaseByTitle(String title) {
@@ -90,10 +93,18 @@ public class Case {
 
     /**
      * Get a case name with a title
-     * @param title case title
-     * @return case name
+     * @param title Case title
+     * @return Case name
      */
     public static String getCaseByTitle(String title) {
         return getCaseByTitle(title);
     }
+
+    /**
+     * Start animation at a specific location
+     * @param player The player who opened the case
+     * @param location Location where to start the animation
+     * @param casename Case name
+     */
+    public static void startAnimation(Player player, Location location, String casename) {}
 }
