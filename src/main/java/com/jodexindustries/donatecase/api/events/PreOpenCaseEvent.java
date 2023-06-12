@@ -28,6 +28,10 @@ public class PreOpenCaseEvent extends PlayerEvent implements Cancellable {
         return Case.getCaseByTitle(caseType);
     }
 
+    public Block getBlock() {
+        return block;
+    }
+
     @NotNull
     @Override
     public HandlerList getHandlers() {
