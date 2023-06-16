@@ -2,6 +2,7 @@ package com.jodexindustries.donatecase.api;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Case {
     /**
@@ -43,25 +44,25 @@ public class Case {
      * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
      * @return true/false
      */
-    public static boolean hasCaseByLocation(String loc) {
+    public static boolean hasCaseByLocation(Location loc) {
         return hasCaseByLocation(loc);
     }
 
     /**
      * Get case type by location
-     * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
+     * @param loc
      * @return Case type
      */
-    public static String getCaseTypeByLocation(String loc) {
+    public static String getCaseTypeByLocation(Location loc) {
         return getCaseTypeByLocation(loc);
     }
 
     /**
      * Get case name by location
-     * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
+     * @param loc
      * @return Case name
      */
-    public static String getCaseNameByLocation(String loc) {
+    public static String getCaseNameByLocation(Location loc) {
         return getCaseNameByLocation(loc);
     }
 
@@ -106,5 +107,14 @@ public class Case {
      * @param location Location where to start the animation
      * @param casename Case name
      */
+
     public static void startAnimation(Player player, Location location, String casename) {}
+
+    /**
+     * @param blockLocation Location
+     * @return
+     */
+    public static @NotNull Location getCaseLocationByBlockLocation(Location blockLocation) {
+        return getCaseLocationByBlockLocation(blockLocation);
+    }
 }
