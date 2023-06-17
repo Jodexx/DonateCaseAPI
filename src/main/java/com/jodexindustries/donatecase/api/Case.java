@@ -1,12 +1,6 @@
 package com.jodexindustries.donatecase.api;
 
-import com.jodexindustries.donatecase.dc.Main;
-import com.jodexindustries.donatecase.tools.Tools;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -14,8 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static com.jodexindustries.donatecase.dc.Main.customConfig;
 
 public class Case {
     /**
