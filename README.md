@@ -23,7 +23,7 @@ maven {
     url "https://repo.jodexindustries.space/releases"
 }
 
-compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.3")
+compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.4")
 ```
 # Example
 Code
