@@ -3,6 +3,7 @@ package com.jodexindustries.donatecase.api;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class Case {
 
     /**
      * Get case type by location
-     * @param loc
+     * @param loc Case location
      * @return Case type
      */
     public static String getCaseTypeByLocation(Location loc) {
@@ -85,7 +86,7 @@ public class Case {
 
     /**
      * Get case name by location
-     * @param loc
+     * @param loc Case location
      * @return Case name
      */
     public static String getCaseNameByLocation(Location loc) {
@@ -145,11 +146,19 @@ public class Case {
     }
     public static String getWinGroupDisplayName(String c, String winGroup) {return getWinGroupDisplayName(c, winGroup);}
 
+    public static boolean getWinGroupEnchant(String c, String winGroup) {
+        return getWinGroupEnchant(c, winGroup);
+    }
+    public static JavaPlugin getInstance() {
+        return getInstance();
+    }
+
+
     public static void onCaseOpenFinish(String casename, Player player, boolean needsound, String winGroup) {}
 
     /**
      * @param blockLocation Location
-     * @return
+     * @return case location (with yaw and pitch)
      */
     public static @NotNull Location getCaseLocationByBlockLocation(Location blockLocation) {
         return getCaseLocationByBlockLocation(blockLocation);
