@@ -1,6 +1,6 @@
 # DonateCaseAPI ![GitHub tag (latest by date)](https://repo.jodexindustries.space/api/badge/latest/releases/com/jodexindustries/donatecase/DonateCaseAPI?color=40c14a&name=DonateCaseAPI&prefix=v) ![Spiget Downloads](https://img.shields.io/spiget/downloads/106701?label=Spigot%20downloads) ![Spiget Version](https://img.shields.io/spiget/version/106701?label=DonateCase) ![Spiget Download Size](https://img.shields.io/spiget/download-size/106701) ![Spiget tested server versions](https://img.shields.io/spiget/tested-versions/106701)
-[JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.4) <br>
-[MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.4)
+[JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.5) <br>
+[MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.5)
 # Install
 Maven
 ```xml
@@ -13,7 +13,7 @@ Maven
 <dependency>
   <groupId>com.jodexindustries.donatecase</groupId>
   <artifactId>DonateCaseAPI</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 Gradle
@@ -23,7 +23,7 @@ maven {
     url "https://repo.jodexindustries.space/releases"
 }
 
-compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.4")
+compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.5")
 ```
 # Example
 Code
