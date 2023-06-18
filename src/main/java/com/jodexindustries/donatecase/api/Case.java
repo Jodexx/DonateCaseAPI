@@ -145,7 +145,7 @@ public class Case {
 
 
     /**
-     *
+     * Get random group from case
      * @param c Case name
      * @return Group name (item name)
      */
@@ -208,7 +208,7 @@ public class Case {
      */
     public static void onCaseOpenFinish(String casename, Player player, boolean needsound, String winGroup) {}
 
-    /**
+    /** Get case location by block location
      * @param blockLocation Location
      * @return case location (with yaw and pitch)
      */
