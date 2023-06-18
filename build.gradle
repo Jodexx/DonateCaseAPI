@@ -53,7 +53,7 @@ publishing {
 }
 
 javadoc {
-    options.links('https://docs.oracle.com/en/java/javase/11/docs/api/', "https://hub.spigotmc.org/javadocs/spigot/index.html?overview-summary.html")
+    options.links('https://docs.oracle.com/en/java/javase/11/docs/api/', "https://helpch.at/docs/1.16.5/")
     source = sourceSets.main.allJava
     destinationDir = file("javadocs")
 }
