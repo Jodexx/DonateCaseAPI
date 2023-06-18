@@ -30,6 +30,12 @@ public class Case {
     public static List<Player> caseOpen = new ArrayList<>();
 
 
+    /**
+     * Save case location
+     * @param name Case name (custom)
+     * @param type Case type (config)
+     * @param lv Case location
+     */
     public static void saveLocation(String name, String type, Location lv) {}
 
     /**
