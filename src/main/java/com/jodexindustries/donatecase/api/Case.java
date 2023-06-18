@@ -154,6 +154,9 @@ public class Case {
     }
 
 
+    public static void animationEnd(Player player, Location location) {}
+
+
     public static void onCaseOpenFinish(String casename, Player player, boolean needsound, String winGroup) {}
 
     /**
