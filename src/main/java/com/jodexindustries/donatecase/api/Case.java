@@ -68,7 +68,7 @@ public class Case {
 
     /**
      * Is there a case on these coordinates?
-     * @param loc <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Location.html#toString()">Location#toString()</a>
+     * @param loc Case location
      * @return true/false
      */
     public static boolean hasCaseByLocation(Location loc) {
@@ -137,26 +137,69 @@ public class Case {
 
     public static void startAnimation(Player player, Location location, String casename) {}
 
+
+    /**
+     *
+     * @param c Case name
+     * @return Group name (item name)
+     */
     public static String getRandomGroup(String c) {
         return getRandomGroup(c);
     }
 
+    /**
+     * Get win group id (item id)
+     * @param c Case name
+     * @param winGroup Group name
+     * @return Group id
+     */
+
     public static String getWinGroupId(String c, String winGroup) {
         return getWinGroupId(c, winGroup);
     }
+
+    /**
+     * Get win group displayname
+     * @param c Case name
+     * @param winGroup Group name
+     * @return Group displayname
+     */
     public static String getWinGroupDisplayName(String c, String winGroup) {return getWinGroupDisplayName(c, winGroup);}
 
+    /**
+     * Get win group enchant (boolean)
+     * @param c Case name
+     * @param winGroup Group name
+     * @return true/false
+     */
     public static boolean getWinGroupEnchant(String c, String winGroup) {
         return getWinGroupEnchant(c, winGroup);
     }
+
+    /**
+     * Get plugin instance
+     * @return DonateCase instance
+     */
     public static JavaPlugin getInstance() {
         return getInstance();
     }
 
+    /**
+     * Animation end method for custom animations
+     * @param player Player who opened
+     * @param location Case location
+     */
 
     public static void animationEnd(Player player, Location location) {}
 
 
+    /**
+     * Case open finish method for custom animations
+     * @param casename Case name
+     * @param player Player who opened
+     * @param needsound Boolean sound
+     * @param winGroup Win group
+     */
     public static void onCaseOpenFinish(String casename, Player player, boolean needsound, String winGroup) {}
 
     /**
