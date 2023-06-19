@@ -49,11 +49,9 @@ public class TestAnimation implements Animation {
                 Location las = as.getLocation().clone();
                 las.setYaw(las.getYaw() + 20.0F);
                 as.teleport(las);
-                if(!winGroupId.contains(":")) {
-                    material = Material.getMaterial(winGroupId);
-                    if (material == null) {
-                        material = Material.STONE;
-                    }
+                material = Material.getMaterial(winGroupId);
+                if (material == null) {
+                    material = Material.STONE;
                 }
                 if (this.i == 0) {
                     this.l = as.getLocation();
@@ -73,9 +71,8 @@ public class TestAnimation implements Animation {
                 if (this.i >= 70) {
                     as.remove();
                     this.cancel();
-                    Case.ActiveCase.remove(lAC);
                     Case.listAR.remove(as);
-                    Case.caseOpen.remove(player);
+                    Case.animationEnd(player, lAC);
                 }
 
                 ++this.i;
