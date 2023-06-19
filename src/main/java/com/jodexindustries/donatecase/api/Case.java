@@ -192,11 +192,13 @@ public class Case {
 
     /**
      * Animation end method for custom animations
+     * @param c Case type
+     * @param animation Animation name
      * @param player Player who opened
      * @param location Case location
      */
 
-    public static void animationEnd(Player player, Location location) {}
+    public static void animationEnd(String c, String animation, Player player, Location location) {}
 
 
     /**

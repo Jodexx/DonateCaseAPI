@@ -1,6 +1,6 @@
 # DonateCaseAPI ![GitHub tag (latest by date)](https://repo.jodexindustries.space/api/badge/latest/releases/com/jodexindustries/donatecase/DonateCaseAPI?color=40c14a&name=DonateCaseAPI&prefix=v) ![Spiget Downloads](https://img.shields.io/spiget/downloads/106701?label=Spigot%20downloads) ![Spiget Version](https://img.shields.io/spiget/version/106701?label=DonateCase) ![Spiget Download Size](https://img.shields.io/spiget/download-size/106701) ![Spiget tested server versions](https://img.shields.io/spiget/tested-versions/106701)
 
-| [MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.6) | [JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.6) | [Wiki](https://github.com/Jodexx/DonateCaseAPI/wiki) |
+| [MavenRepo](https://repo.jodexindustries.space/#/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.7) | [JavaDocs](https://repo.jodexindustries.space/javadoc/releases/com/jodexindustries/donatecase/DonateCaseAPI/1.0.7) | [Wiki](https://github.com/Jodexx/DonateCaseAPI/wiki) |
 |---------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 
 
@@ -17,7 +17,7 @@ Maven
 <dependency>
   <groupId>com.jodexindustries.donatecase</groupId>
   <artifactId>DonateCaseAPI</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
 </dependency>
 ```
 Gradle
@@ -28,5 +28,5 @@ maven {
 }
 ```
 ```gradle
-compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.6")
+compileOnly("com.jodexindustries.donatecase:DonateCaseAPI:1.0.7")
 ```
