@@ -20,6 +20,11 @@ public class CaseInteractEvent extends PlayerEvent implements Cancellable {
         this.block = block;
         cancel = false;
     }
+
+    /**
+     * Get clicked case
+     * @return Case block
+     */
     @NotNull
     public Block getClickedBlock() {
         return block;
