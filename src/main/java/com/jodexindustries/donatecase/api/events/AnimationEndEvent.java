@@ -6,6 +6,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Called when the animation ends
+ */
 public class AnimationEndEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     String caseType;

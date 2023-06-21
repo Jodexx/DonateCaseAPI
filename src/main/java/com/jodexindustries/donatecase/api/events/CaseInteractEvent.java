@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Called when the player interacts with the case block on the mouse's right button
  */
-
 public class CaseInteractEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     protected boolean cancel;

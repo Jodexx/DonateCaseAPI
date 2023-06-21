@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Called when a player tries to open a case via the open menu
  */
-
 public class PreOpenCaseEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     protected boolean cancel;
