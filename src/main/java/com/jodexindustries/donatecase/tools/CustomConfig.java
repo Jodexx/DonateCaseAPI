@@ -2,8 +2,6 @@ package com.jodexindustries.donatecase.tools;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-
 public class CustomConfig {
 
     public CustomConfig() {}
