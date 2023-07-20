@@ -24,6 +24,8 @@ public class AnimationManager {
      * @param c Case type (from config)
      */
     public static void playAnimation(String name, Player player, Location location, String c) {}
+
+
     public static boolean isRegistered(String name) {
         return registeredAnimations.get(name) != null;
     }

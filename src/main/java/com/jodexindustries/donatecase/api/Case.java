@@ -1,5 +1,6 @@
 package com.jodexindustries.donatecase.api;
 
+import com.jodexindustries.donatecase.tools.CustomConfig;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -216,5 +217,12 @@ public class Case {
      */
     public static @NotNull Location getCaseLocationByBlockLocation(Location blockLocation) {
         return getCaseLocationByBlockLocation(blockLocation);
+    }
+
+    /** Get plugin configuration manager
+     * @return configuration manager instance
+     */
+    public static @NotNull CustomConfig getCustomConfig() {
+        return getCustomConfig();
     }
 }
