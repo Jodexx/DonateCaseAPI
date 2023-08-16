@@ -6,6 +6,10 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A class that represents an animation control
+ */
+
 public class AnimationManager {
     private static Map<String, Class<? extends Animation>> registeredAnimations = new HashMap<>();
 

@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A class that represents all the main API methods
+ */
+
 public class Case {
     /**
      * List of entities currently in use
@@ -127,10 +131,19 @@ public class Case {
     }
 
     /**
+     * Get all cases in config
+     * @return cases
+     */
+    public static @NotNull List<String> getCases() {
+        return getCases();
+    }
+
+    /**
      * Get a case name with a title
      * @param title Case title
      * @return Case name
      */
+    @Deprecated
     public static String getCaseByTitle(String title) {
         return getCaseByTitle(title);
     }
