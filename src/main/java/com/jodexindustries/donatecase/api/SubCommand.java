@@ -15,6 +15,17 @@ public interface SubCommand {
      * @param args Passed command arguments
      */
     void execute(CommandSender sender, String[] args);
+
+    /**
+     * Tab completions
+     * @param sender Source of the command
+     * @param args Passed command arguments
+     * @return Tab completions
+     */
     List<String> getTabCompletions(CommandSender sender, String[] args);
+    /**
+     * Command type (ADMIN, MODER, PLAYER)
+     * @return SubCommandType
+     */
     SubCommandType getType();
 }
