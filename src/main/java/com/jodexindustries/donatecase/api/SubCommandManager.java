@@ -13,10 +13,19 @@ import java.util.Map;
 public class SubCommandManager {
     public static final Map<String, SubCommand> subCommands = new HashMap<>();
 
+    /**
+     * Register sub command
+     * @param commandName Sub command name to register
+     * @param subCommand Class that implements the SubCommand interface
+     */
     public static void registerSubCommand(String commandName, SubCommand subCommand) {
         registerSubCommand(commandName, subCommand);
     }
 
+    /**
+     * Get all subcommands
+     * @return String - sub command name <br> SubCommand - Class that implements the SubCommand interface
+     */
     public static Map<String, SubCommand> getSubCommands() {
         return subCommands;
     }
