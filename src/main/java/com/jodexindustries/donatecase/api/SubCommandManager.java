@@ -29,6 +29,14 @@ public class SubCommandManager {
     public static Map<String, SubCommand> getSubCommands() {
         return subCommands;
     }
+
+    /**
+     * Get tab completions for a subcommand
+     * @param sender Source of the command
+     * @param args Passed command arguments
+     * @param subCommandName Sub command name
+     * @return Tab completions
+     */
     public static List<String> getTabCompletionsForSubCommand(CommandSender sender, String subCommandName, String[] args) {
         SubCommand subCommand = subCommands.get(subCommandName.toLowerCase());
         if (subCommand != null) {
