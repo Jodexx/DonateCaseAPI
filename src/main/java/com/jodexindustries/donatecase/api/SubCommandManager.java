@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Sub command class manager
+ */
+
 public class SubCommandManager {
     public static final Map<String, SubCommand> subCommands = new HashMap<>();
 

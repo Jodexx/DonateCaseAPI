@@ -26,6 +26,10 @@ public class AnimationEndEvent extends PlayerEvent {
     public Location getLocation() {
         return location;
     }
+    /**
+     * Get case type (type from config)
+     * @return case type
+     */
     @NotNull
     public String getCaseType() {
         return caseType;
