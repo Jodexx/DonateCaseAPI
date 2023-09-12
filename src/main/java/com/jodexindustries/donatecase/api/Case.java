@@ -205,7 +205,7 @@ public class Case {
     }
 
     /**
-     * Animation end method for custom animations
+     * Animation end method for custom animations is called to completely end the animation
      * @param winGroup Win group
      * @param c Case type
      * @param animation Animation name
@@ -217,7 +217,7 @@ public class Case {
 
 
     /**
-     * Case open finish method for custom animations
+     * Case open finish method for custom animations is called to grant a group, send a message, and more
      * @param casename Case name
      * @param player Player who opened
      * @param needsound Boolean sound
