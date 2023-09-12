@@ -212,7 +212,7 @@ public class Case {
      * @param location Case location
      */
 
-    public static void animationEnd(String c, String animation, Player player, Location location) {}
+    public static void animationEnd(String c, String animation, Player player, Location location, String winGroup) {}
 
 
     /**
