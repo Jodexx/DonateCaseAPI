@@ -206,6 +206,7 @@ public class Case {
 
     /**
      * Animation end method for custom animations
+     * @param winGroup Win group
      * @param c Case type
      * @param animation Animation name
      * @param player Player who opened
