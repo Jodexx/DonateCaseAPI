@@ -2,14 +2,13 @@ package com.jodexindustries.donatecase.api;
 
 import com.jodexindustries.donatecase.tools.CustomConfig;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * A class that represents all the main API methods
@@ -23,7 +22,7 @@ public class Case {
     /**
      * Open cases (active)
      */
-    public static HashMap<Player, Location> openCase = new HashMap<>();
+    public static HashMap<UUID, Location> openCase = new HashMap<>();
     /**
      * Active cases
      */
@@ -34,6 +33,10 @@ public class Case {
      */
     public static List<Player> caseOpen = new ArrayList<>();
 
+    /**
+     * Open cases (active, names)
+     */
+    public static HashMap<UUID, String> openCaseName = new HashMap<>();
 
     /**
      * Save case location
@@ -50,6 +53,13 @@ public class Case {
      * @param keys Number of keys
      */
     public static void setKeys(String casename, String player, int keys) {}
+
+    /**
+     * Set null case keys to a specific player
+     * @param caseName Case name
+     * @param player Player name
+     */
+    public static void setNullKeys(String caseName, String player) {}
 
     /**
      * Add case keys to a specific player
@@ -76,6 +86,18 @@ public class Case {
     public static int getKeys(String name, String player) {
         return getKeys(name, player);
     }
+
+    /**
+     * Delete case by location in Cases.yml
+     * @param loc Case location
+     */
+    public static void deleteCaseByLocation(Location loc) {}
+
+    /**
+     * Delete case by name in Cases.yml
+     * @param name Case name
+     */
+    public static void deleteCaseByName(String name) {}
 
     /**
      * Is there a case on these coordinates?
@@ -134,28 +156,18 @@ public class Case {
      * Get all cases in config
      * @return cases
      */
-    public static @NotNull List<String> getCases() {
+    public static Map<String, YamlConfiguration> getCases() {
         return getCases();
-    }
-
-    /**
-     * Get a case name with a title
-     * @param title Case title
-     * @return Case name
-     */
-    @Deprecated
-    public static String getCaseByTitle(String title) {
-        return getCaseByTitle(title);
     }
 
     /**
      * Start animation at a specific location
      * @param player The player who opened the case
      * @param location Location where to start the animation
-     * @param casename Case name
+     * @param caseName Case name
      */
 
-    public static void startAnimation(Player player, Location location, String casename) {}
+    public static void startAnimation(Player player, Location location, String caseName) {}
 
 
     /**
@@ -218,18 +230,19 @@ public class Case {
 
     /**
      * Case open finish method for custom animations is called to grant a group, send a message, and more
-     * @param casename Case name
+     * @param caseName Case name
      * @param player Player who opened
      * @param needsound Boolean sound
      * @param winGroup Win group
      */
-    public static void onCaseOpenFinish(String casename, Player player, boolean needsound, String winGroup) {}
+    public static void onCaseOpenFinish(String caseName, Player player, boolean needsound, String winGroup) {}
 
-    /** Get case location by block location
-     * @param blockLocation Location
-     * @return case location (with yaw and pitch)
+    /**
+     * Get case location (in Cases.yml) by block location
+     * @param blockLocation Block location
+     * @return case location in Cases.yml (with yaw and pitch)
      */
-    public static @NotNull Location getCaseLocationByBlockLocation(Location blockLocation) {
+    public static Location getCaseLocationByBlockLocation(Location blockLocation) {
         return getCaseLocationByBlockLocation(blockLocation);
     }
 
@@ -238,5 +251,14 @@ public class Case {
      */
     public static @NotNull CustomConfig getCustomConfig() {
         return getCustomConfig();
+    }
+
+    /**
+     * Get case title
+     * @param caseName Case name
+     * @return case title
+     */
+    public static String getCaseTitle(String caseName) {
+        return getCaseTitle(caseName);
     }
 }
