@@ -2,6 +2,9 @@ package com.jodexindustries.donatecase.tools;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.io.IOException;
+import java.util.logging.Level;
+
 /**
  * Class representing all plugin configurations
  */
@@ -32,6 +35,12 @@ public class CustomConfig {
      */
 
     public void saveKeys() {}
+
+
+    /**
+     * Save Config.yml
+     */
+    public void saveConfig() {}
 
     /**
      * Get Cases.yml
