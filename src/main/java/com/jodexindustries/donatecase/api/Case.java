@@ -20,23 +20,15 @@ public class Case {
      */
     public static List<ArmorStand> listAR = new ArrayList<>();
     /**
-     * Open cases (active)
-     */
-    public static HashMap<UUID, Location> openCase = new HashMap<>();
-    /**
      * Active cases
      */
     public static HashMap<Location, String> ActiveCase = new HashMap<>();
 
-    /**
-     * Players, who opened cases (started scrolling)
-     */
-    public static List<Player> caseOpen = new ArrayList<>();
 
     /**
-     * Open cases (active, names)
+     * Players, who opened cases (open gui)
      */
-    public static HashMap<UUID, String> openCaseName = new HashMap<>();
+    public static HashMap<UUID, OpenCase> playerOpensCase = new HashMap<>();
 
     /**
      * Save case location
