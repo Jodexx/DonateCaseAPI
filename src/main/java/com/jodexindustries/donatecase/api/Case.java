@@ -31,6 +31,11 @@ public class Case {
     public static HashMap<UUID, OpenCase> playerOpensCase = new HashMap<>();
 
     /**
+     * History data massive, key - case name
+     */
+    public static HashMap<String, HistoryData[]> historyData = new HashMap<>();
+
+    /**
      * Save case location
      * @param name Case name (custom)
      * @param type Case type (config)
@@ -40,11 +45,11 @@ public class Case {
 
     /**
      * Set case keys to a specific player
-     * @param casename Case name
+     * @param caseName Case name
      * @param player Player name
      * @param keys Number of keys
      */
-    public static void setKeys(String casename, String player, int keys) {}
+    public static void setKeys(String caseName, String player, int keys) {}
 
     /**
      * Set null case keys to a specific player
@@ -55,19 +60,19 @@ public class Case {
 
     /**
      * Add case keys to a specific player
-     * @param casename Case name
+     * @param caseName Case name
      * @param player Player name
      * @param keys Number of keys
      */
-    public static void addKeys(String casename, String player, int keys) {}
+    public static void addKeys(String caseName, String player, int keys) {}
 
     /**
      * Delete case keys for a specific player
-     * @param casename Case name
+     * @param caseName Case name
      * @param player Player name
      * @param keys Number of keys
      */
-    public static void removeKeys(String casename, String player, int keys) {}
+    public static void removeKeys(String caseName, String player, int keys) {}
 
     /**
      * Get the keys to a certain player's case
@@ -224,10 +229,10 @@ public class Case {
      * Case open finish method for custom animations is called to grant a group, send a message, and more
      * @param caseName Case name
      * @param player Player who opened
-     * @param needsound Boolean sound
+     * @param needSound Boolean sound
      * @param winGroup Win group
      */
-    public static void onCaseOpenFinish(String caseName, Player player, boolean needsound, String winGroup) {}
+    public static void onCaseOpenFinish(String caseName, Player player, boolean needSound, String winGroup) {}
 
     /**
      * Get case location (in Cases.yml) by block location
