@@ -206,6 +206,16 @@ public class Case {
     }
 
     /**
+     * Get win group Rgb (String massive)
+     * @param c Case name
+     * @param winGroup Group name
+     * @return rgb massive with 3 items
+     */
+    public static String[] getWinGroupRgb(String c, String winGroup) {
+        return getWinGroupRgb(c, winGroup);
+    }
+
+    /**
      * Get plugin instance
      * @return DonateCase instance
      */
