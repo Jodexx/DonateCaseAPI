@@ -14,26 +14,29 @@ public class CaseInteractEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     protected boolean cancel;
     Block block;
-    public CaseInteractEvent(@NotNull final Player who, @NotNull final Block block) {
+    String caseType;
+    public CaseInteractEvent(@NotNull final Player who, @NotNull final Block block, @NotNull final String caseType) {
         super(who);
         this.block = block;
+        this.caseType = caseType;
         cancel = false;
     }
-
-    /**
-     * Get clicked case
-     * @return Case block
-     */
     @NotNull
     public Block getClickedBlock() {
         return block;
     }
-
-    public static HandlerList getHandlerList() {
-        return handlers;
+    @NotNull
+    public String getCaseType() {
+        return caseType;
     }
+
+    @NotNull
     @Override
     public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
