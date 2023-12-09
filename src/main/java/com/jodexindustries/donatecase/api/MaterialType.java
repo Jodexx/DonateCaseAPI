@@ -5,5 +5,6 @@ public enum MaterialType {
     CH,
     HEAD,
     BASE64,
-    DEFAULT
+    DEFAULT,
+    IA
 }
