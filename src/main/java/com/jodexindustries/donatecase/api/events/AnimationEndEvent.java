@@ -24,6 +24,11 @@ public class AnimationEndEvent extends PlayerEvent {
         this.winGroup = winGroup;
     }
 
+    /**
+     * Get case location
+     * @return case location
+     */
+
     @NotNull
     public Location getLocation() {
         return location;

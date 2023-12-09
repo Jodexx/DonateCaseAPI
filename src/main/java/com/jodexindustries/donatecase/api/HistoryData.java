@@ -11,15 +11,27 @@ public class HistoryData {
         this.group = group;
     }
 
+    /**
+     * Get player name, who opened case
+     * @return player name
+     */
     public String getPlayerName() {
         return playerName;
     }
+
+    /**
+     * Get timestamp, when case successful opened
+     * @return timestamp
+     */
 
     public long getTime() {
         return time;
     }
 
-
+    /**
+     * Get win group
+     * @return win group
+     */
     public String getGroup() {
         return group;
     }

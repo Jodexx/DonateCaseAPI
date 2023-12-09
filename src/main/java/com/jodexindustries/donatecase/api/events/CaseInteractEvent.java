@@ -25,6 +25,11 @@ public class CaseInteractEvent extends PlayerEvent implements Cancellable {
     public Block getClickedBlock() {
         return block;
     }
+
+    /**
+     * Get case type
+     * @return case type
+     */
     @NotNull
     public String getCaseType() {
         return caseType;

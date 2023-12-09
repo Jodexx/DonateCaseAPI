@@ -22,18 +22,33 @@ public class AnimationRegisteredEvent extends Event {
         this.animationPluginName = animationPluginName;
     }
 
+    /**
+     * Get animation name
+     * @return animation name
+     */
     public String getAnimationName() {
         return animationName;
     }
 
+    /**
+     * Get animation plugin name
+     * @return animation plugin name
+     */
     public String getAnimationPluginName() {
         return animationPluginName;
     }
 
+    /**
+     * Get if this animation is default
+     * @return boolean
+     */
     public boolean isDefault() {
         return isDefault;
     }
 
+    /** Get animation class
+     * @return animation class
+     */
     public Class<? extends Animation> getAnimationClass() {
         return animationClass;
     }
