@@ -1,5 +1,8 @@
 package com.jodexindustries.donatecase.api;
 
+/**
+ * Class to define material type
+ */
 public enum MaterialType {
     /**
      * HeadDataBase

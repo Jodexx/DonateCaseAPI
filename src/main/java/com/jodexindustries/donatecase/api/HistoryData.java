@@ -1,5 +1,8 @@
 package com.jodexindustries.donatecase.api;
 
+/**
+ * Class to implement information about case opening histories
+ */
 public class HistoryData {
     private final String playerName;
     private final long time;

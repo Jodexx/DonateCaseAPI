@@ -4,6 +4,10 @@ import org.bukkit.Location;
 
 import java.util.UUID;
 
+/**
+ * Class to implement information about case opening histories
+ */
+
 public class OpenCase {
     /**
      * Case location
