@@ -23,6 +23,11 @@ public class SubCommandManager {
     public static void registerSubCommand(String commandName, SubCommand subCommand) {
         registerSubCommand(commandName, subCommand);
     }
+
+    /**
+     * Unregister sub command
+     * @param commandName Sub command name to unregister
+     */
     public static void unregisterSubCommand(String commandName) {
         unregisterSubCommand(commandName);
     }
