@@ -7,11 +7,13 @@ public class HistoryData {
     private final String playerName;
     private final long time;
     private final String group;
+    private final String caseType;
 
-    public HistoryData(String playerName, long time, String group) {
+    public HistoryData(String caseType, String playerName, long time, String group) {
         this.playerName = playerName;
         this.time = time;
         this.group = group;
+        this.caseType = caseType;
     }
 
     /**
@@ -37,5 +39,13 @@ public class HistoryData {
      */
     public String getGroup() {
         return group;
+    }
+
+    /**
+     * Get case type
+     * @return case type
+     */
+    public String getCaseType() {
+        return caseType;
     }
 }

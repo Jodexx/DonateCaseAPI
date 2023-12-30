@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -267,5 +268,16 @@ public class Case {
      */
     public static String getCaseTitle(String caseName) {
         return getCaseTitle(caseName);
+    }
+
+    /**
+     * Open case gui
+     * @param p Player
+     * @param caseType Case type
+     * @param blockLocation Block location
+     * @return Gui inventory
+     */
+    public static Inventory openGui(Player p, String caseType, Location blockLocation) {
+        return openGui(p,caseType , blockLocation);
     }
 }
