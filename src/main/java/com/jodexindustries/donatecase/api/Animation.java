@@ -19,6 +19,7 @@ public interface Animation {
      * @param player Player who opened case
      * @param location Case location
      * @param c Case name
+     * @param winGroup Win group
      */
-    void start(Player player, Location location, String c);
+    void start(Player player, Location location, String c, String winGroup);
 }
