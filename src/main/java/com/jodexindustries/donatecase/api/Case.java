@@ -1,6 +1,7 @@
 package com.jodexindustries.donatecase.api;
 
 import com.jodexindustries.donatecase.tools.CustomConfig;
+import com.jodexindustries.donatecase.tools.Tools;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
@@ -279,5 +280,12 @@ public class Case {
      */
     public static Inventory openGui(Player p, String caseType, Location blockLocation) {
         return openGui(p,caseType , blockLocation);
+    }
+    /**
+     * Get tools
+     * @return Tools instance
+     */
+    public static Tools getTools() {
+        return getTools();
     }
 }
