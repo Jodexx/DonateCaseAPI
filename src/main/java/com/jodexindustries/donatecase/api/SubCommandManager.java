@@ -1,7 +1,5 @@
 package com.jodexindustries.donatecase.api;
 
-import com.jodexindustries.donatecase.api.events.SubCommandRegisteredEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
@@ -11,7 +9,6 @@ import java.util.Map;
 /**
  * Sub command class manager
  */
-
 public class SubCommandManager {
     public static final Map<String, SubCommand> subCommands = new HashMap<>();
 
@@ -20,17 +17,13 @@ public class SubCommandManager {
      * @param commandName Sub command name to register
      * @param subCommand Class that implements the SubCommand interface
      */
-    public static void registerSubCommand(String commandName, SubCommand subCommand) {
-        registerSubCommand(commandName, subCommand);
-    }
+    public static void registerSubCommand(String commandName, SubCommand subCommand) {}
 
     /**
      * Unregister sub command
      * @param commandName Sub command name to unregister
      */
-    public static void unregisterSubCommand(String commandName) {
-        unregisterSubCommand(commandName);
-    }
+    public static void unregisterSubCommand(String commandName) {}
 
     /**
      * Get all subcommands

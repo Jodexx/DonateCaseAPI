@@ -1,7 +1,10 @@
 package com.jodexindustries.donatecase.api;
 
+import com.jodexindustries.donatecase.api.events.AnimationEndEvent;
 import com.jodexindustries.donatecase.tools.CustomConfig;
 import com.jodexindustries.donatecase.tools.Tools;
+import com.jodexindustries.donatecase.api.data.CaseData;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
@@ -9,41 +12,41 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-/**
- * A class that represents all the main API methods
- */
+
 
 public class Case {
+
     /**
      * List of entities currently in use
      */
-    public static List<ArmorStand> listAR = new ArrayList<>();
+    public static List<ArmorStand> armorStandList = new ArrayList<>();
     /**
      * Active cases
      */
-    public static HashMap<Location, String> ActiveCase = new HashMap<>();
+    public static HashMap<Location, String> activeCases = new HashMap<>();
 
 
     /**
      * Players, who opened cases (open gui)
      */
-    public static HashMap<UUID, OpenCase> playerOpensCase = new HashMap<>();
+    public static HashMap<UUID, OpenCase> playersCases = new HashMap<>();
 
     /**
-     * History data massive, key - case name
+     * Loaded cases in runtime
      */
-    public static HashMap<String, HistoryData[]> historyData = new HashMap<>();
+    public static HashMap<String, CaseData> caseData = new HashMap<>();
 
     /**
      * Save case location
-     * @param name Case name (custom)
+     * @param caseName Case name (custom)
      * @param type Case type (config)
      * @param lv Case location
      */
-    public static void saveLocation(String name, String type, Location lv) {}
+    public static void saveLocation(String caseName, String type, Location lv) {}
 
     /**
      * Set case keys to a specific player
@@ -66,7 +69,9 @@ public class Case {
      * @param player Player name
      * @param keys Number of keys
      */
-    public static void addKeys(String caseName, String player, int keys) {}
+    public static void addKeys(String caseName, String player, int keys) {
+        setKeys(caseName, player, getKeys(caseName, player) + keys);
+    }
 
     /**
      * Delete case keys for a specific player
@@ -74,7 +79,10 @@ public class Case {
      * @param player Player name
      * @param keys Number of keys
      */
-    public static void removeKeys(String caseName, String player, int keys) {}
+
+    public static void removeKeys(String caseName, String player, int keys) {
+        setKeys(caseName, player, getKeys(caseName, player) - keys);
+    }
 
     /**
      * Get the keys to a certain player's case
@@ -82,8 +90,9 @@ public class Case {
      * @param player Player name
      * @return Number of keys
      */
+
     public static int getKeys(String name, String player) {
-        return getKeys(name, player);
+        return getKeys(name,player);
     }
 
     /**
@@ -99,10 +108,11 @@ public class Case {
     public static void deleteCaseByName(String name) {}
 
     /**
-     * Is there a case on these coordinates?
+     * Check if case has by location
      * @param loc Case location
-     * @return true/false
+     * @return Boolean
      */
+
     public static boolean hasCaseByLocation(Location loc) {
         return hasCaseByLocation(loc);
     }
@@ -116,6 +126,7 @@ public class Case {
         return getCaseTypeByLocation(loc);
     }
 
+
     /**
      * Get case name by location
      * @param loc Case location
@@ -124,14 +135,16 @@ public class Case {
     public static String getCaseNameByLocation(Location loc) {
         return getCaseNameByLocation(loc);
     }
-
     /**
      * Is there a case with a name?
      * @param name Case name
      * @return true/false
      */
     public static boolean hasCaseByName(String name) {
-        return hasCaseByName(name);
+        if(caseData.isEmpty()) {
+            return false;
+        }
+        return caseData.containsKey(name);
     }
     /**
      * Are there cases that have been created?
@@ -148,9 +161,12 @@ public class Case {
      * @return true/false
      */
     public static boolean hasCaseByTitle(String title) {
-        return hasCaseByTitle(title);
-    }
+        for (CaseData data : caseData.values()) {
+            if(data.getCaseTitle().equalsIgnoreCase(title)) return true;
+        }
 
+        return false;
+    }
     /**
      * Get all cases in config
      * @return cases
@@ -165,56 +181,14 @@ public class Case {
      * @param location Location where to start the animation
      * @param caseName Case name
      */
-
     public static void startAnimation(Player player, Location location, String caseName) {}
-
-
     /**
      * Get random group from case
-     * @param c Case name
-     * @return Group name (item name)
+     * @param c Case data
+     * @return Item data
      */
-    public static String getRandomGroup(String c) {
-        return getRandomGroup(c);
-    }
-
-    /**
-     * Get win group id (item id)
-     * @param c Case name
-     * @param winGroup Group name
-     * @return Group id
-     */
-
-    public static String getWinGroupId(String c, String winGroup) {
-        return getWinGroupId(c, winGroup);
-    }
-
-    /**
-     * Get win group displayname
-     * @param c Case name
-     * @param winGroup Group name
-     * @return Group displayname
-     */
-    public static String getWinGroupDisplayName(String c, String winGroup) {return getWinGroupDisplayName(c, winGroup);}
-
-    /**
-     * Get win group enchant (boolean)
-     * @param c Case name
-     * @param winGroup Group name
-     * @return true/false
-     */
-    public static boolean getWinGroupEnchant(String c, String winGroup) {
-        return getWinGroupEnchant(c, winGroup);
-    }
-
-    /**
-     * Get win group Rgb (String massive)
-     * @param c Case name
-     * @param winGroup Group name
-     * @return rgb massive with 3 items
-     */
-    public static String[] getWinGroupRgb(String c, String winGroup) {
-        return getWinGroupRgb(c, winGroup);
+    public static CaseData.Item getRandomItem(CaseData c) {
+        return getRandomItem(c);
     }
 
     /**
@@ -227,24 +201,27 @@ public class Case {
 
     /**
      * Animation end method for custom animations is called to completely end the animation
-     * @param winGroup Win group
-     * @param c Case type
+     * @param item Item data
+     * @param c Case data
      * @param animation Animation name
      * @param player Player who opened
      * @param location Case location
      */
-
-    public static void animationEnd(String c, String animation, Player player, Location location, String winGroup) {}
-
+    public static void animationEnd(CaseData c, String animation, Player player, Location location, CaseData.Item item) {
+        AnimationEndEvent animationEndEvent = new AnimationEndEvent(player, animation, c, location, item);
+        Bukkit.getServer().getPluginManager().callEvent(animationEndEvent);
+        activeCases.remove(location.getBlock().getLocation());
+    }
 
     /**
      * Case open finish method for custom animations is called to grant a group, send a message, and more
-     * @param caseName Case name
+     * @param caseData Case data
      * @param player Player who opened
      * @param needSound Boolean sound
-     * @param winGroup Win group
+     * @param item Win item data
      */
-    public static void onCaseOpenFinish(String caseName, Player player, boolean needSound, String winGroup) {}
+    public static void onCaseOpenFinish(CaseData caseData, Player player, boolean needSound, CaseData.Item item) {}
+
 
     /**
      * Get case location (in Cases.yml) by block location
@@ -263,29 +240,33 @@ public class Case {
     }
 
     /**
-     * Get case title
-     * @param caseName Case name
-     * @return case title
+     * Open case gui
+     * @param p Player
+     * @param caseData Case type
+     * @param blockLocation Block location
+     * @return Inventory
      */
-    public static String getCaseTitle(String caseName) {
-        return getCaseTitle(caseName);
+    public static Inventory openGui(Player p, CaseData caseData, Location blockLocation) {
+        return openGui(p,caseData,blockLocation);
+    }
+
+
+    /**
+     * Is there a case with a name?
+     * @param c Case name
+     * @return Boolean
+     */
+    public static boolean hasCase(@NotNull String c) {
+        return caseData.containsKey(c);
     }
 
     /**
-     * Open case gui
-     * @param p Player
-     * @param caseType Case type
-     * @param blockLocation Block location
-     * @return Gui inventory
+     * Get a case with the name
+     * @param c Case name
+     * @return Case data
      */
-    public static Inventory openGui(Player p, String caseType, Location blockLocation) {
-        return openGui(p,caseType , blockLocation);
-    }
-    /**
-     * Get tools
-     * @return Tools instance
-     */
-    public static Tools getTools() {
-        return getTools();
+    @Nullable
+    public static CaseData getCase(@NotNull String c) {
+        return caseData.getOrDefault(c, null);
     }
 }

@@ -1,8 +1,5 @@
 package com.jodexindustries.donatecase.api;
 
-/**
- * Class to define material type
- */
 public enum MaterialType {
     /**
      * HeadDataBase
@@ -13,19 +10,19 @@ public enum MaterialType {
      */
     CH,
     /**
-     * Plain Minecraft head
+     * Minecraft head (by nick)
      */
     HEAD,
     /**
-     * BASE64 Minecraft head (by texture)
+     * Minecraft url head
      */
     BASE64,
     /**
-     * Default Minecraft item
-     */
-    DEFAULT,
-    /**
      * ItemsAdder
      */
-    IA
+    IA,
+    /**
+     * Default Bukkit material
+     */
+    DEFAULT
 }

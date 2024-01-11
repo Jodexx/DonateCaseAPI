@@ -22,7 +22,6 @@ public class PreOpenCaseEvent extends PlayerEvent implements Cancellable {
         this.block = block;
         cancel = false;
     }
-
     /**
      * Get case type (type from config)
      * @return case type
@@ -35,7 +34,6 @@ public class PreOpenCaseEvent extends PlayerEvent implements Cancellable {
      * Get case block
      * @return Case block
      */
-
     public Block getBlock() {
         return block;
     }

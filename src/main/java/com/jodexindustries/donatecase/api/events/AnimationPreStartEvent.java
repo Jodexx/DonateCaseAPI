@@ -1,5 +1,6 @@
 package com.jodexindustries.donatecase.api.events;
 
+import com.jodexindustries.donatecase.api.data.CaseData;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -11,17 +12,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class AnimationPreStartEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
-    String caseType;
+    CaseData caseData;
     Location location;
     String animation;
-    String winGroup;
+    CaseData.Item winItem;
 
-    public AnimationPreStartEvent(@NotNull Player who, String animation, String caseType, Location location, String winGroup) {
+    public AnimationPreStartEvent(@NotNull Player who, String animation, CaseData c, Location location, CaseData.Item winItem) {
         super(who);
-        this.caseType = caseType;
+        this.caseData = c;
         this.location = location;
         this.animation = animation;
-        this.winGroup = winGroup;
+        this.winItem = winItem;
     }
 
     /**
@@ -34,12 +35,12 @@ public class AnimationPreStartEvent extends PlayerEvent {
         return location;
     }
     /**
-     * Get case type (type from config)
-     * @return case type
+     * Get case data
+     * @return case data
      */
     @NotNull
-    public String getCaseType() {
-        return caseType;
+    public CaseData getCaseData() {
+        return caseData;
     }
 
     /**
@@ -52,20 +53,20 @@ public class AnimationPreStartEvent extends PlayerEvent {
     }
 
     /**
-     * Get the win group
-     * @return win group
+     * Get the win item
+     * @return win item
      */
     @NotNull
-    public String getWinGroup() {
-        return winGroup;
+    public CaseData.Item getWinItem() {
+        return winItem;
     }
 
     /**
      * Set the prize before starting the animation (usually a random one is taken from the case configuration)
-     * @param winGroup Win group from case configuration
+     * @param winItem Win group data
      */
-    public void setWinGroup(String winGroup) {
-        this.winGroup = winGroup;
+    public void setWinItem(CaseData.Item winItem) {
+        this.winItem = winItem;
     }
 
     @NotNull

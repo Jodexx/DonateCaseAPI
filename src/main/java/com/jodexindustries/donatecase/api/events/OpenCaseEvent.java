@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Called when the player successfully opens the case (from gui) and the animation starts
  */
-
 public class OpenCaseEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     protected boolean cancel;
