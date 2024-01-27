@@ -1,6 +1,8 @@
 package com.jodexindustries.donatecase.api;
 
 import com.jodexindustries.donatecase.api.data.CaseData;
+import com.jodexindustries.donatecase.api.events.AnimationUnregisteredEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -17,6 +19,12 @@ public class AnimationManager {
      * @param animation Animation class
      */
     public static void registerAnimation(String name, Class<? extends Animation> animation) {}
+
+    /**
+     * Unregister custom animation
+     * @param name Animation name
+     */
+    public static void unregisterAnimation(String name) {}
     /**
      * Play animation
      * @param name Animation name
