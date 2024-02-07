@@ -295,4 +295,12 @@ public class Case {
                 .sorted(Comparator.comparingLong(CaseData.HistoryData::getTime).reversed())
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Get addon manager for addons manipulate
+     * @return AddonManager instance
+     */
+    public static AddonManager getAddonManager() {
+        return getAddonManager();
+    }
 }
