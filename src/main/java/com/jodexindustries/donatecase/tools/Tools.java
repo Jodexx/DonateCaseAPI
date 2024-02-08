@@ -1,38 +1,44 @@
 package com.jodexindustries.donatecase.tools;
 
-import com.jodexindustries.donatecase.api.MaterialType;
-import com.jodexindustries.donatecase.api.SubCommand;
-import com.jodexindustries.donatecase.api.SubCommandType;
+import com.jodexindustries.donatecase.api.Case;
 import com.jodexindustries.donatecase.api.armorstand.ArmorStandCreator;
+import com.jodexindustries.donatecase.api.data.CaseData;
+import com.jodexindustries.donatecase.api.data.MaterialType;
+import com.jodexindustries.donatecase.api.data.SubCommand;
+import com.jodexindustries.donatecase.api.data.SubCommandType;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 public class Tools {
 
 
-    public static String getRandomGroup(String c) {
-        return getRandomGroup(c);
-    }
-    public  int parseIntFromBoolean(boolean booleanValue) {
-        return booleanValue ? 1 : 0;
+    public static CaseData.Item getRandomGroup(CaseData data) {
+        Random random = new Random();
+        int maxChance = 0;
+        int from = 0;
+        for (String item : data.clone().getItems().keySet()) {
+            maxChance += data.clone().getItem(item).getChance();
+        }
+        int rand = random.nextInt(maxChance);
+
+        for (String item : data.clone().getItems().keySet()) {
+            int itemChance = data.clone().getItem(item).getChance();
+            if (from <= rand && rand < from + itemChance) {
+                return data.clone().getItem(item);
+            }
+            from += itemChance;
+        }
+
+        return null;
     }
     public ArmorStandCreator createArmorStand() {
         return createArmorStand();
@@ -94,7 +100,10 @@ public class Tools {
 
     public void convertCases() {}
     public List<File> getCasesInFolder() {
-        return getCasesInFolder();
+        List<File> files = new ArrayList<>();
+        File directory = new File(Case.getInstance().getDataFolder(), "cases");
+        Collections.addAll(files, Objects.requireNonNull(directory.listFiles()));
+        return files;
     }
     public Location fromString(String str) {
         String regex = "Location\\{world=CraftWorld\\{name=(.*?)},x=(.*?),y=(.*?),z=(.*?),pitch=(.*?),yaw=(.*?)}";
@@ -141,7 +150,7 @@ public class Tools {
     }
 
     public ItemStack createItem(Material ma, int amount, int data, String dn, boolean enchant, String[] rgb) {
-        return createItem(ma, data, amount, dn, null, enchant, rgb);
+        return createItem(ma, data, amount, dn, null, enchant, rgb, -1);
     }
 
     public Color parseColor(String s) {
@@ -219,86 +228,51 @@ public class Tools {
         return item;
     }
     public ItemStack getBASE64Skull(String url, String displayName, List<String> lore) {
-        return getBASE64Skull(url, displayName,lore);
+        return getBASE64Skull(url,displayName,lore);
     }
     public ItemStack getBASE64Skull(String url, String displayName) {
         return getBASE64Skull(url, displayName, null);
     }
 
-    public ItemStack getWinItem(String c, String winGroup, Player player) {
-        return getWinItem(c,winGroup,player);
+    public ItemStack getCaseItem(String displayName, String id, boolean enchanted, String[] rgb) {
+        return getCaseItem(displayName,id,enchanted,rgb);
     }
 
-    public ItemStack createItem(Material ma, int data, int amount, String dn, List<String> lore, boolean enchant, String[] rgb) {
-        ItemStack item;
-        if(data == -1) {
-            item = new ItemStack(ma, amount);
-        } else if (Bukkit.getVersion().contains("1.12.2")){
-            item = new ItemStack(ma, amount, (short) 1, (byte) data);
-        } else {
-            item = new ItemStack(ma, amount);
-        }
-        if(enchant && !ma.equals(Material.AIR)) {
-            item.addUnsafeEnchantment(Enchantment.LURE, 1);
-        }
-        ItemMeta m = item.getItemMeta();
-        if(m != null) {
-            if (dn != null) {
-                m.setDisplayName(rc(dn));
-            }
-
-            if (lore != null) {
-
-                m.setLore(this.rc(lore));
-            }
-            if (enchant && !ma.equals(Material.AIR)) {
-                m.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            }
-
-            item.setItemMeta(m);
-
-            if (rgb != null && m instanceof LeatherArmorMeta) {
-                LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) m;
-                int r = Integer.parseInt(rgb[0]);
-                int g = Integer.parseInt(rgb[1]);
-                int b = Integer.parseInt(rgb[2]);
-                leatherArmorMeta.setColor(Color.fromRGB(r, g, b));
-                item.setItemMeta(leatherArmorMeta);
-            }
-        }
-        return item;
+    public ItemStack createItem(Material ma, int data, int amount, String dn, List<String> lore, boolean enchant, String[] rgb, int modeldata) {
+        return createItem(ma,data,amount,dn,lore,enchant,rgb,modeldata);
     }
     public MaterialType getMaterialType(String material) {
         if (material.contains(":")) {
-            if (material.startsWith("HEAD")) {
-                return MaterialType.HEAD;
-            } else if (material.startsWith("HDB")) {
-                return MaterialType.HDB;
-            } else if (material.startsWith("CH")) {
-                return MaterialType.CH;
-            } else if (material.startsWith("BASE64")) {
-                return MaterialType.BASE64;
-            } else if(material.startsWith("IA")) {
-                return MaterialType.IA;
+            String prefix = material.substring(0, material.indexOf(":"));
+            switch (prefix) {
+                case "HEAD":
+                    return MaterialType.HEAD;
+                case "HDB":
+                    return MaterialType.HDB;
+                case "CH":
+                    return MaterialType.CH;
+                case "BASE64":
+                    return MaterialType.BASE64;
+                case "IA":
+                    return MaterialType.IA;
+                default:
+                    break;
             }
         }
         return MaterialType.DEFAULT;
     }
+
     public List<Integer> getOpenMaterialSlots(String c) {
         return getOpenMaterialSlots(c);
     }
     public Map<List<Integer>, String> getOpenMaterialItemsBySlots(String c) {
         return getOpenMaterialItemsBySlots(c);
     }
+
     public String getOpenMaterialTypeByMapBySlot(String c, int slot) {
-        Map<List<Integer>, String> map = getOpenMaterialItemsBySlots(c);
-        for (List<Integer> list : map.keySet()) {
-            if(list.contains(slot)) {
-                return map.get(list);
-            }
-        }
-        return null;
+        return getOpenMaterialTypeByMapBySlot(c,slot);
     }
+
 
     public String hex(String message) {
         Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");
@@ -330,49 +304,28 @@ public class Tools {
         return Integer.parseInt(builder.toString());
     }
     public boolean isHasCommandForSender(CommandSender sender, Map<String, List<Map<String, SubCommand>>> addonsMap) {
-        for (String addon : addonsMap.keySet()) {
-            List<Map<String, SubCommand>> commands = addonsMap.get(addon);
-            for (Map<String, SubCommand> command : commands) {
-                for (String commandName : command.keySet()) {
-                    SubCommand subCommand = command.get(commandName);
-                    if(sender.hasPermission("donatecase.admin")) {
-                        if (subCommand.getType() == SubCommandType.ADMIN || subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
-                    } else if (sender.hasPermission("donatecase.mod") && !sender.hasPermission("donatecase.admin")) {
-                        if (subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
-                    } else if (sender.hasPermission("donatecase.player") && !sender.hasPermission("donatecase.admin") && !sender.hasPermission("donatecase.mod")) {
-                        if (subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
+        return isHasCommandForSender(sender,addonsMap);
+    }
+    public boolean isHasCommandForSender(CommandSender sender, Map<String, List<Map<String, SubCommand>>> addonsMap, String addon) {
+        List<Map<String, SubCommand>> commands = addonsMap.get(addon);
+        for (Map<String, SubCommand> command : commands) {
+            for (String commandName : command.keySet()) {
+                SubCommand subCommand = command.get(commandName);
+                if (sender.hasPermission("donatecase.admin")) {
+                    if (subCommand.getType() == SubCommandType.ADMIN || subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
+                        return true;
+                    }
+                } else if (sender.hasPermission("donatecase.mod") && !sender.hasPermission("donatecase.admin")) {
+                    if (subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
+                        return true;
+                    }
+                } else if (sender.hasPermission("donatecase.player") && !sender.hasPermission("donatecase.admin") && !sender.hasPermission("donatecase.mod")) {
+                    if (subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
+                        return true;
                     }
                 }
             }
         }
-        return false;
-    }
-    public boolean isHasCommandForSender(CommandSender sender, Map<String, List<Map<String, SubCommand>>> addonsMap, String addon) {
-            List<Map<String, SubCommand>> commands = addonsMap.get(addon);
-            for (Map<String, SubCommand> command : commands) {
-                for (String commandName : command.keySet()) {
-                    SubCommand subCommand = command.get(commandName);
-                    if (sender.hasPermission("donatecase.admin")) {
-                        if (subCommand.getType() == SubCommandType.ADMIN || subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
-                    } else if (sender.hasPermission("donatecase.mod") && !sender.hasPermission("donatecase.admin")) {
-                        if (subCommand.getType() == SubCommandType.MODER || subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
-                    } else if (sender.hasPermission("donatecase.player") && !sender.hasPermission("donatecase.admin") && !sender.hasPermission("donatecase.mod")) {
-                        if (subCommand.getType() == SubCommandType.PLAYER || subCommand.getType() == null) {
-                            return true;
-                        }
-                    }
-                }
-            }
         return false;
     }
 

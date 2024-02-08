@@ -1,9 +1,10 @@
 package com.jodexindustries.donatecase.api;
 
+import com.jodexindustries.donatecase.api.data.OpenCase;
 import com.jodexindustries.donatecase.api.events.AnimationEndEvent;
 import com.jodexindustries.donatecase.tools.CustomConfig;
-import com.jodexindustries.donatecase.tools.Tools;
 import com.jodexindustries.donatecase.api.data.CaseData;
+import com.jodexindustries.donatecase.tools.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -249,6 +250,14 @@ public class Case {
      */
     public static Inventory openGui(Player p, CaseData caseData, Location blockLocation) {
         return openGui(p,caseData,blockLocation);
+    }
+
+    /**
+     * Get tools
+     * @return Tools instance
+     */
+    public static Tools getTools() {
+        return getTools();
     }
 
 

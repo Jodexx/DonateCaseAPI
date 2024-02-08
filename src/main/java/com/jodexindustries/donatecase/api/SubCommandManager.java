@@ -1,5 +1,6 @@
 package com.jodexindustries.donatecase.api;
 
+import com.jodexindustries.donatecase.api.data.SubCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
