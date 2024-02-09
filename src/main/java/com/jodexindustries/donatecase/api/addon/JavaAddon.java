@@ -3,10 +3,12 @@ package com.jodexindustries.donatecase.api.addon;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 import java.util.logging.Level;
 
 public abstract class JavaAddon implements Addon {
@@ -114,5 +116,11 @@ public abstract class JavaAddon implements Addon {
 
     public AddonLogger getLogger() {
         return addonLogger;
+    }
+    public static String getNameByClassLoader(ClassLoader classLoader) {
+        InputStream input = classLoader.getResourceAsStream("addon.yml");
+        Yaml yaml = new Yaml();
+        Map<String, Object> data = yaml.load(input);
+        return (String) data.get("name");
     }
 }
