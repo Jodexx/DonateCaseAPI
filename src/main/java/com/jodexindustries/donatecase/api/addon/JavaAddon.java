@@ -7,6 +7,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.net.URLConnection;
 import java.util.Map;
 import java.util.logging.Level;
@@ -17,12 +18,14 @@ public abstract class JavaAddon implements Addon {
     private ClassLoader classLoader;
     private AddonLogger addonLogger;
     private File file;
+    private URLClassLoader urlClassLoader;
 
-    public void init(String version, String name, File file) {
+    public void init(String version, String name, File file, URLClassLoader loader) {
         this.version = version;
         this.name = name;
         this.file = file;
         this.classLoader = this.getClass().getClassLoader();
+        this.urlClassLoader = loader;
         this.addonLogger = new AddonLogger(this);
     }
     public JavaAddon() {}
@@ -122,5 +125,8 @@ public abstract class JavaAddon implements Addon {
         Yaml yaml = new Yaml();
         Map<String, Object> data = yaml.load(input);
         return (String) data.get("name");
+    }
+    public URLClassLoader getUrlClassLoader() {
+        return urlClassLoader;
     }
 }
