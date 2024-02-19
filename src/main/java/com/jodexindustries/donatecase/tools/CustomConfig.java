@@ -76,4 +76,20 @@ public class CustomConfig {
     public YamlConfiguration getAnimations() {
         return getAnimations();
     }
+
+    /**
+     * Get Data.yml
+     * @return Data.yml
+     */
+    public YamlConfiguration getData() {
+        return getData();
+    }
+
+    /**
+     * Get Language file (lang/file.yml)
+     * @return language
+     */
+    public YamlConfiguration getLang() {
+        return getLang();
+    }
 }
