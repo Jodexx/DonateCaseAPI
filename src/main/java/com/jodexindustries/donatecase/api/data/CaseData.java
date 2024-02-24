@@ -4,10 +4,7 @@ import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CaseData implements Cloneable {
     private final String caseName;
@@ -17,8 +14,11 @@ public class CaseData implements Cloneable {
     private AnimationSound animationSound;
     private Map<String, Item> items;
     private HistoryData[] historyData;
+    private Hologram hologram;
 
-    public CaseData(String caseName, String caseDisplayName, String caseTitle, String animation, com.jodexindustries.donatecase.api.data.CaseData.AnimationSound animationSound, Map<String, com.jodexindustries.donatecase.api.data.CaseData.Item> items, com.jodexindustries.donatecase.api.data.CaseData.HistoryData[] historyData) {
+    public CaseData(String caseName, String caseDisplayName, String caseTitle,
+                    String animation, AnimationSound animationSound, Map<String,
+            Item> items, HistoryData[] historyData, Hologram hologram) {
         this.caseName = caseName;
         this.caseDisplayName = caseDisplayName;
         this.caseTitle = caseTitle;
@@ -26,6 +26,7 @@ public class CaseData implements Cloneable {
         this.animationSound = animationSound;
         this.items = items;
         this.historyData = historyData;
+        this.hologram = hologram;
     }
 
     @Override
@@ -188,6 +189,13 @@ public class CaseData implements Cloneable {
 
     public void setCaseDisplayName(String caseDisplayName) {
         this.caseDisplayName = caseDisplayName;
+    }
+
+    public Hologram getHologram() {
+        return hologram;
+    }
+    public void setHologram(Hologram hologram) {
+        this.hologram = hologram;
     }
 
     public static class Item implements Cloneable {
@@ -363,10 +371,12 @@ public class CaseData implements Cloneable {
         public static class RandomAction implements Cloneable {
             private int chance;
             private List<String> actions;
+            private String displayName;
 
-            public RandomAction(int chance, List<String> actions) {
+            public RandomAction(int chance, List<String> actions, String displayName) {
                 this.chance = chance;
                 this.actions = actions;
+                this.displayName = displayName;
             }
 
             /**
@@ -416,6 +426,14 @@ public class CaseData implements Cloneable {
                 } catch (CloneNotSupportedException e) {
                     throw new AssertionError(e);
                 }
+            }
+
+            public String getDisplayName() {
+                return displayName;
+            }
+
+            public void setDisplayName(String displayName) {
+                this.displayName = displayName;
             }
         }
         public static class Material {
@@ -488,12 +506,12 @@ public class CaseData implements Cloneable {
              * @param enchanted boolean
              */
             public void setEnchanted(boolean enchanted) {
-                    if (enchanted) {
-                        this.itemStack.addUnsafeEnchantment(Enchantment.LURE, 1);
-                    } else {
-                        this.itemStack.removeEnchantment(Enchantment.LURE);
-                    }
-                    this.enchanted = enchanted;
+                if (enchanted) {
+                    this.itemStack.addUnsafeEnchantment(Enchantment.LURE, 1);
+                } else {
+                    this.itemStack.removeEnchantment(Enchantment.LURE);
+                }
+                this.enchanted = enchanted;
             }
 
             /**
@@ -620,14 +638,41 @@ public class CaseData implements Cloneable {
     /**
      * Class to implement information about case opening histories
      */
-    public static class HistoryData implements Cloneable {
-        private final String item;
 
-        private final String playerName;
-        private final long time;
-        private final String group;
-        private final String caseType;
-        private final String action;
+    public static class HistoryData implements Cloneable {
+        private int id;
+
+        public void setItem(String item) {
+            this.item = item;
+        }
+
+        public void setPlayerName(String playerName) {
+            this.playerName = playerName;
+        }
+
+        public void setTime(long time) {
+            this.time = time;
+        }
+
+        public void setGroup(String group) {
+            this.group = group;
+        }
+
+        public void setCaseType(String caseType) {
+            this.caseType = caseType;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
+
+        private String item;
+        private String playerName;
+        private long time;
+        private String group;
+        private String caseType;
+        private String action;
+        public HistoryData() {}
 
         public HistoryData(String item, String caseType, String playerName, long time, String group, String action) {
             this.item = item;
@@ -656,6 +701,14 @@ public class CaseData implements Cloneable {
             } catch (CloneNotSupportedException e) {
                 throw new AssertionError(e);
             }
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
         }
 
         /**
@@ -702,6 +755,75 @@ public class CaseData implements Cloneable {
 
         public String getItem() {
             return item;
+        }
+    }
+
+
+    public static class Hologram {
+
+        private final boolean enabled;
+        private final double height;
+        private final int range;
+        private final List<String> messages;
+
+        /**
+         * Empty constructor
+         */
+        public Hologram() {
+            this.enabled = false;
+            this.height = 0.0;
+            this.range = 8;
+            this.messages = new ArrayList<>();
+        }
+
+        /**
+         * A secondary constructor to build a hologram.
+         *
+         * @param enabled if the hologram enabled or not
+         * @param height of the hologram from the ground
+         * @param messages the hologram will display
+         */
+        public Hologram(boolean enabled, double height, int range, List<String> messages) {
+            this.enabled = enabled;
+            this.height = height;
+            this.range = range;
+            this.messages = messages;
+        }
+
+        /**
+         * Check if the hologram is enabled or not.
+         *
+         * @return true if yes otherwise false.
+         */
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        /**
+         * Gets the range at which a hologram can be seen.
+         *
+         * @return the range
+         */
+        public int getRange() {
+            return range;
+        }
+
+        /**
+         * Get the height of the hologram from the ground.
+         *
+         * @return the height
+         */
+        public double getHeight() {
+            return height;
+        }
+
+        /**
+         * Get the messages the hologram will display.
+         *
+         * @return the list of messages
+         */
+        public List<String> getMessages() {
+            return messages;
         }
     }
 

@@ -294,13 +294,12 @@ public class Case {
      */
 
     public static List<CaseData.HistoryData> getSortedHistoryData() {
-        return caseData.values().stream()
-                .filter(Objects::nonNull)
-                .flatMap(data -> {
-                    CaseData.HistoryData[] historyData = data.getHistoryData();
-                    return historyData != null ? Arrays.stream(historyData) : Stream.empty();
-                })
-                .filter(Objects::nonNull)
+        return getSortedHistoryData();
+    }
+
+    public static List<CaseData.HistoryData> sortHistoryDataByCase(List<CaseData.HistoryData> historyData, String caseType) {
+        return historyData.stream().filter(Objects::nonNull)
+                .filter(data -> data.getCaseType().equals(caseType))
                 .sorted(Comparator.comparingLong(CaseData.HistoryData::getTime).reversed())
                 .collect(Collectors.toList());
     }
