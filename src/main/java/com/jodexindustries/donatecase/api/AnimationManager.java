@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AnimationManager {
-    private static final Map<String, Class<? extends Animation>> registeredAnimations = new HashMap<>();
+    private static final Map<String, Animation> registeredAnimations = new HashMap<>();
 
     /**
      * Register custom animation
      * @param name Animation name
      * @param animation Animation class
      */
-    public static void registerAnimation(String name, Class<? extends Animation> animation) {}
+    public static void registerAnimation(String name, Animation animation) {}
 
     /**
      * Unregister custom animation
@@ -40,7 +40,7 @@ public class AnimationManager {
      * Get all registered animations
      * @return map with registered animations
      */
-    public static Map<String, Class<? extends Animation>> getRegisteredAnimations() {
+    public static Map<String, Animation> getRegisteredAnimations() {
         return registeredAnimations;
     }
 
@@ -52,8 +52,8 @@ public class AnimationManager {
     private static Animation getRegisteredAnimation(String animation) {
         if (registeredAnimations.containsKey(animation)) {
             try {
-                Class<? extends Animation> animationClass = getRegisteredAnimations().get(animation);
-                return animationClass.getDeclaredConstructor().newInstance();
+                Animation animationClass = getRegisteredAnimations().get(animation);
+                return animationClass.getClass().getDeclaredConstructor().newInstance();
             } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 e.printStackTrace();
             }
