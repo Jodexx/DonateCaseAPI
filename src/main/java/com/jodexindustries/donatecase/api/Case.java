@@ -138,17 +138,6 @@ public class Case {
         return getCaseNameByLocation(loc);
     }
     /**
-     * Is there a case with a name?
-     * @param name Case name
-     * @return true/false
-     */
-    public static boolean hasCaseByName(String name) {
-        if(caseData.isEmpty()) {
-            return false;
-        }
-        return caseData.containsKey(name);
-    }
-    /**
      * Are there cases that have been created?
      * @param name Case name
      * @return true/false
@@ -262,8 +251,8 @@ public class Case {
 
 
     /**
-     * Is there a case with a name?
-     * @param c Case name
+     * Is there a case with a type?
+     * @param c Case type
      * @return Boolean
      */
     public static boolean hasCase(@NotNull String c) {
