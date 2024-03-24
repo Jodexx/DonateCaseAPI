@@ -1,6 +1,5 @@
 package com.jodexindustries.donatecase.api.armorstand;
 
-import com.jodexindustries.donatecase.api.Case;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
@@ -11,7 +10,6 @@ public class BukkitArmorStandCreator implements ArmorStandCreator {
     @Override
     public void spawnArmorStand(Location location) {
         entity = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-        Case.armorStandList.add(entity);
     }
 
     @Override
@@ -50,7 +48,6 @@ public class BukkitArmorStandCreator implements ArmorStandCreator {
 
     @Override
     public void remove() {
-        Case.armorStandList.remove(entity);
         entity.remove();
     }
 }

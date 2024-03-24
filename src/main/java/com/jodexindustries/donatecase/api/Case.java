@@ -1,14 +1,13 @@
 package com.jodexindustries.donatecase.api;
 
+import com.jodexindustries.donatecase.api.data.CaseData;
 import com.jodexindustries.donatecase.api.data.OpenCase;
 import com.jodexindustries.donatecase.api.events.AnimationEndEvent;
 import com.jodexindustries.donatecase.tools.CustomConfig;
-import com.jodexindustries.donatecase.api.data.CaseData;
 import com.jodexindustries.donatecase.tools.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,15 +16,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class Case {
 
-    /**
-     * List of entities currently in use
-     */
-    public static List<ArmorStand> armorStandList = new ArrayList<>();
     /**
      * Active cases
      */
