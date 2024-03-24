@@ -2,9 +2,6 @@ package com.jodexindustries.donatecase.tools;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.IOException;
-import java.util.logging.Level;
-
 /**
  * Class representing all plugin configurations
  */
